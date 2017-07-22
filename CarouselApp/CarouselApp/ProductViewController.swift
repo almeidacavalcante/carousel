@@ -37,8 +37,6 @@ class ProductViewController: UICollectionViewController, UICollectionViewDelegat
 
         
         for i in 0...times {
-            print(i)
-            
             red = CGFloat(arc4random_uniform(254)+1)
             green = CGFloat(arc4random_uniform(254)+1)
             blue = CGFloat(arc4random_uniform(254)+1)
