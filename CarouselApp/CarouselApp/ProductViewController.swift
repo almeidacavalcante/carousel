@@ -25,7 +25,7 @@ class ProductViewController: UICollectionViewController, UICollectionViewDelegat
         collectionView?.isPagingEnabled = true
         collectionView?.anchor(top: view.topAnchor, left: view.leftAnchor, botton: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: self.screenWidth)
         
-        self.randomColorArray(times: 3)
+        self.randomColorArray(times: 10)
 
         
     }
