@@ -15,7 +15,7 @@ class ProductViewController: UICollectionViewController, UICollectionViewDelegat
     let screenWidth = UIScreen.main.bounds.size.width
     let cellId = "cellId"
     
-    
+     
 
     override func viewDidLoad() {
         super.viewDidLoad()
