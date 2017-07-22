@@ -20,7 +20,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow()
         window?.makeKeyAndVisible()
         
-        window?.rootViewController = ViewController()
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        
+        window?.rootViewController = ProductViewController(collectionViewLayout: layout)
         
         
         
