@@ -7,26 +7,61 @@
 //
 
 import UIKit
- 
-class ProductViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+
+class ProductViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, UIPageViewControllerDelegate {
     
-    var productPhotos : [UIImage?] = [UIImage]()
-    var productFakeColors : [UIColor?] = [UIColor]()
+    
+    
+//    var productPhotos : [UIImage?] = [UIImage]()
+    var productPhotos : [UIColor?] = [UIColor]()
     let screenWidth = UIScreen.main.bounds.size.width
     let cellId = "cellId"
     
+    let pageControl = UIPageControl()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.setupCollectionView()
         self.view.backgroundColor = .white
+
+        let numberOfCells = 5
+        self.randomColorArray(times: numberOfCells)
+        
+        setupPageControl()
+        
+        
+        
+    }
+    
+    func setupCollectionView(){
+        collectionView?.delegate = self
         collectionView?.register(UICollectionViewCell.self, forCellWithReuseIdentifier: cellId)
         collectionView?.backgroundColor = .white
         collectionView?.isPagingEnabled = true
         collectionView?.anchor(top: view.topAnchor, left: view.leftAnchor, botton: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: self.screenWidth)
         
-        let randomNumber = Int(arc4random_uniform(30))
-        
-        self.randomColorArray(times: randomNumber)
     }
+    
+    func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
+        print("hay!")
+    }
+    
+    func setupPageControl(){
+        pageControl.currentPage = 0
+        pageControl.numberOfPages = productPhotos.count
+        pageControl.hidesForSinglePage = true
+        view.addSubview(pageControl)
+        pageControl.anchor(top: nil, left: collectionView?.leftAnchor, botton: collectionView?.bottomAnchor, right: collectionView?.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 50)
+        
+        pageControl.addTarget(self, action: #selector(pageChanged), for: .valueChanged)
+        
+    }
+    
+    func pageChanged(){
+        print("page changed")
+    }
+    
     
     func randomColorArray(times: Int){
         var red : CGFloat = 100
@@ -39,14 +74,14 @@ class ProductViewController: UICollectionViewController, UICollectionViewDelegat
             green = CGFloat(arc4random_uniform(254)+1)
             blue = CGFloat(arc4random_uniform(254)+1)
             
-            self.productFakeColors.append(UIColor.rgb(red: red, green: green, blue: blue))
+            self.productPhotos.append(UIColor.rgb(red: red, green: green, blue: blue))
         }
     }
 
     
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.productFakeColors.count
+        return self.productPhotos.count
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -55,7 +90,7 @@ class ProductViewController: UICollectionViewController, UICollectionViewDelegat
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
-        cell.backgroundColor = productFakeColors[indexPath.item]
+        cell.backgroundColor = productPhotos[indexPath.item]
         return cell
     }
     
