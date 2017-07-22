@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+ 
 class ProductViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
     var productPhotos : [UIImage?] = [UIImage]()
@@ -15,8 +15,6 @@ class ProductViewController: UICollectionViewController, UICollectionViewDelegat
     let screenWidth = UIScreen.main.bounds.size.width
     let cellId = "cellId"
     
-     
-
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
@@ -25,9 +23,9 @@ class ProductViewController: UICollectionViewController, UICollectionViewDelegat
         collectionView?.isPagingEnabled = true
         collectionView?.anchor(top: view.topAnchor, left: view.leftAnchor, botton: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: self.screenWidth)
         
-        self.randomColorArray(times: 10)
-
+        let randomNumber = Int(arc4random_uniform(30))
         
+        self.randomColorArray(times: randomNumber)
     }
     
     func randomColorArray(times: Int){
@@ -36,7 +34,7 @@ class ProductViewController: UICollectionViewController, UICollectionViewDelegat
         var green : CGFloat = 100
 
         
-        for i in 0...times {
+        for _ in 0...times {
             red = CGFloat(arc4random_uniform(254)+1)
             green = CGFloat(arc4random_uniform(254)+1)
             blue = CGFloat(arc4random_uniform(254)+1)
