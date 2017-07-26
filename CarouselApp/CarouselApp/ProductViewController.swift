@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ProductViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, UIPageViewControllerDelegate {
+class ProductViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
     
     
@@ -22,10 +22,12 @@ class ProductViewController: UICollectionViewController, UICollectionViewDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        
         self.setupCollectionView()
         self.view.backgroundColor = .white
 
-        let numberOfCells = 5
+        let numberOfCells = 3
         self.randomColorArray(times: numberOfCells)
         
         setupPageControl()
@@ -36,15 +38,11 @@ class ProductViewController: UICollectionViewController, UICollectionViewDelegat
     
     func setupCollectionView(){
         collectionView?.delegate = self
-        collectionView?.register(UICollectionViewCell.self, forCellWithReuseIdentifier: cellId)
+        collectionView?.register(ProductCell.self, forCellWithReuseIdentifier: cellId)
         collectionView?.backgroundColor = .white
         collectionView?.isPagingEnabled = true
         collectionView?.anchor(top: view.topAnchor, left: view.leftAnchor, botton: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: self.screenWidth)
         
-    }
-    
-    func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
-        print("hay!")
     }
     
     func setupPageControl(){
@@ -59,8 +57,10 @@ class ProductViewController: UICollectionViewController, UICollectionViewDelegat
     }
     
     func pageChanged(){
-        print("page changed")
+        print(pageControl.currentPage)
     }
+    
+    
     
     
     func randomColorArray(times: Int){
@@ -89,7 +89,8 @@ class ProductViewController: UICollectionViewController, UICollectionViewDelegat
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! ProductCell
+        
         cell.backgroundColor = productPhotos[indexPath.item]
         return cell
     }

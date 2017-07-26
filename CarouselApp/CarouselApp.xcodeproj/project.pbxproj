@@ -11,6 +11,7 @@
 		D51AF4861F22AAF0008CA66E /* ProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51AF4851F22AAF0008CA66E /* ProductViewController.swift */; };
 		D51AF48B1F22AAF0008CA66E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D51AF48A1F22AAF0008CA66E /* Assets.xcassets */; };
 		D51AF4981F23B9D9008CA66E /* Extentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51AF4971F23B9D9008CA66E /* Extentions.swift */; };
+		D572192F1F2820FD00E43B5C /* ProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D572192E1F2820FD00E43B5C /* ProductCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +21,7 @@
 		D51AF48A1F22AAF0008CA66E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D51AF48F1F22AAF0008CA66E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D51AF4971F23B9D9008CA66E /* Extentions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extentions.swift; sourceTree = "<group>"; };
+		D572192E1F2820FD00E43B5C /* ProductCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProductCell.swift; path = ../ProductCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +54,7 @@
 		D51AF4821F22AAF0008CA66E /* CarouselApp */ = {
 			isa = PBXGroup;
 			children = (
+				D572192E1F2820FD00E43B5C /* ProductCell.swift */,
 				D51AF4831F22AAF0008CA66E /* AppDelegate.swift */,
 				D51AF4851F22AAF0008CA66E /* ProductViewController.swift */,
 				D51AF48A1F22AAF0008CA66E /* Assets.xcassets */,
@@ -133,6 +136,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D51AF4981F23B9D9008CA66E /* Extentions.swift in Sources */,
+				D572192F1F2820FD00E43B5C /* ProductCell.swift in Sources */,
 				D51AF4861F22AAF0008CA66E /* ProductViewController.swift in Sources */,
 				D51AF4841F22AAF0008CA66E /* AppDelegate.swift in Sources */,
 			);
