@@ -10,8 +10,18 @@ import UIKit
 
 class ProductCell : UICollectionViewCell {
     
+    let imageView : UIImageView = {
+        let iv = UIImageView()
+        return iv
+    }()
+    
+    let screenWidth = UIScreen.main.bounds.size.width
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
+        addSubview(imageView)
+        self.imageView.anchor(top: topAnchor, left: leftAnchor, botton: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: screenWidth, height: 0)
         
     }
     
