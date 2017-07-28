@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ProductViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+class ProductViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, UIPageViewControllerDelegate {
     
     
     
@@ -22,8 +22,6 @@ class ProductViewController: UICollectionViewController, UICollectionViewDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        
         self.setupCollectionView()
         self.view.backgroundColor = .white
 
@@ -32,17 +30,39 @@ class ProductViewController: UICollectionViewController, UICollectionViewDelegat
         
         setupPageControl()
         
-        
-        
     }
     
     func setupCollectionView(){
         collectionView?.delegate = self
-        collectionView?.register(ProductCell.self, forCellWithReuseIdentifier: cellId)
+        collectionView?.register(UICollectionViewCell.self, forCellWithReuseIdentifier: cellId)
         collectionView?.backgroundColor = .white
         collectionView?.isPagingEnabled = true
         collectionView?.anchor(top: view.topAnchor, left: view.leftAnchor, botton: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: self.screenWidth)
         
+    }
+    
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//        
+//        let pageNumber = floor((scrollView.contentOffset.x - screenWidth / 50) / screenWidth) + 1
+//        pageControl.currentPage = Int(pageNumber)
+//        print(pageNumber)
+        
+    }
+    
+    override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        let pageNumber = scrollView.contentOffset.x / screenWidth
+        pageControl.currentPage = Int(pageNumber)
+        print("Page Number: ", pageNumber)
+        print("Screen Width: ", screenWidth)
+    }
+    
+    override func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        
+        
+    }
+    
+    override func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
+        print("nice")
     }
     
     func setupPageControl(){
@@ -89,9 +109,9 @@ class ProductViewController: UICollectionViewController, UICollectionViewDelegat
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! ProductCell
-        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
         cell.backgroundColor = productPhotos[indexPath.item]
+        
         return cell
     }
     
