@@ -13,7 +13,7 @@ class ProductCell : UICollectionViewCell {
     let imageView : UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFill
-        iv.clipsToBounds = true
+        iv.clipsToBounds = true 
         return iv
     }()
     
