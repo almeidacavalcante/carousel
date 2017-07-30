@@ -23,7 +23,7 @@ class ProductViewController: UICollectionViewController, UICollectionViewDelegat
         self.setupCollectionView()
         self.view.backgroundColor = .white
 
-        let numberOfCells = 5
+        let numberOfCells = 3
         self.insertAssets(times: numberOfCells)
         
         setupPageControl()
@@ -62,7 +62,7 @@ class ProductViewController: UICollectionViewController, UICollectionViewDelegat
     
     func insertAssets(times : Int){
         for i in 1...times {
-            self.productPhotos.append(UIImage(named: "Image\(i)"))
+            self.productPhotos.append(UIImage(named: "image\(i)"))
         }
     }
     
