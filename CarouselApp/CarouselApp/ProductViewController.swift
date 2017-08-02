@@ -27,7 +27,44 @@ class ProductViewController: UICollectionViewController, UICollectionViewDelegat
         self.insertAssets(times: numberOfCells)
         
         setupPageControl()
+        setupStackView()
         
+    }
+    
+//    let stackView : UIStackView = {
+//        let sv = UIStackView()
+//        sv.axis = .horizontal
+//        sv.distribution = .fillEqually
+//        sv.backgroundColor = .gray
+//        
+//        return sv
+//    }()
+    
+    let plusButton : UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(#imageLiteral(resourceName: "plus").withRenderingMode(.alwaysOriginal), for: .normal)
+        button.addTarget(self, action: #selector(addPhotoHandler), for: .touchUpInside)
+        return button
+    }()
+    
+    func addPhotoHandler(){
+        print("Adding photo!")
+        
+        let photoSelectorController = PhotoSelectorController(collectionViewLayout: UICollectionViewFlowLayout())
+        
+        present(photoSelectorController, animated: true) { 
+            print("Presenting Photo Selector Controller!")
+        }
+    }
+    
+    func setupStackView(){
+        let stackView = UIStackView(arrangedSubviews: [plusButton])
+        
+        stackView.distribution = .fillEqually
+        stackView.axis = .horizontal
+        
+        view.addSubview(stackView)
+        stackView.anchor(top: nil, left: self.view.leftAnchor, botton: self.view.bottomAnchor, right: self.view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 50)
     }
     
     func setupCollectionView(){
@@ -65,24 +102,6 @@ class ProductViewController: UICollectionViewController, UICollectionViewDelegat
             self.productPhotos.append(UIImage(named: "image\(i)"))
         }
     }
-    
-    
-//    func randomColorArray(times: Int){
-//        var red : CGFloat = 100
-//        var blue : CGFloat = 100
-//        var green : CGFloat = 100
-//
-//        
-//        for _ in 0...times {
-//            red = CGFloat(arc4random_uniform(254)+1)
-//            green = CGFloat(arc4random_uniform(254)+1)
-//            blue = CGFloat(arc4random_uniform(254)+1)
-//            
-////            self.productPhotos.append(UIColor.rgb(red: red, green: green, blue: blue))
-//        }
-//    }
-
-    
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.productPhotos.count
