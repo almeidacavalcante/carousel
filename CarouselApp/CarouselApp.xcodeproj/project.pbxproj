@@ -14,6 +14,7 @@
 		D572192F1F2820FD00E43B5C /* ProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D572192E1F2820FD00E43B5C /* ProductCell.swift */; };
 		D5D2EFD21F328AB4002BB16F /* PhotoSelectorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D2EFD11F328AB4002BB16F /* PhotoSelectorController.swift */; };
 		D5D2EFD41F328C51002BB16F /* HeaderPhotoSelectorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D2EFD31F328C51002BB16F /* HeaderPhotoSelectorCell.swift */; };
+		D5D2EFD61F32934B002BB16F /* PhotoSelectorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D2EFD51F32934B002BB16F /* PhotoSelectorCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		D572192E1F2820FD00E43B5C /* ProductCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProductCell.swift; path = ../ProductCell.swift; sourceTree = "<group>"; };
 		D5D2EFD11F328AB4002BB16F /* PhotoSelectorController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoSelectorController.swift; sourceTree = "<group>"; };
 		D5D2EFD31F328C51002BB16F /* HeaderPhotoSelectorCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderPhotoSelectorCell.swift; sourceTree = "<group>"; };
+		D5D2EFD51F32934B002BB16F /* PhotoSelectorCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoSelectorCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +76,7 @@
 			children = (
 				D5D2EFD11F328AB4002BB16F /* PhotoSelectorController.swift */,
 				D5D2EFD31F328C51002BB16F /* HeaderPhotoSelectorCell.swift */,
+				D5D2EFD51F32934B002BB16F /* PhotoSelectorCell.swift */,
 			);
 			name = PhotoSelector;
 			sourceTree = "<group>";
@@ -152,6 +155,7 @@
 				D51AF4981F23B9D9008CA66E /* Extentions.swift in Sources */,
 				D572192F1F2820FD00E43B5C /* ProductCell.swift in Sources */,
 				D5D2EFD41F328C51002BB16F /* HeaderPhotoSelectorCell.swift in Sources */,
+				D5D2EFD61F32934B002BB16F /* PhotoSelectorCell.swift in Sources */,
 				D51AF4861F22AAF0008CA66E /* ProductViewController.swift in Sources */,
 				D51AF4841F22AAF0008CA66E /* AppDelegate.swift in Sources */,
 				D5D2EFD21F328AB4002BB16F /* PhotoSelectorController.swift in Sources */,
