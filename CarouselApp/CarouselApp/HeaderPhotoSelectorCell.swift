@@ -12,7 +12,9 @@ class HeaderPhotoSelectorCell : UICollectionViewCell {
     
     let imageView : UIImageView = {
         let iv = UIImageView()
-        iv.backgroundColor = .gray
+        iv.backgroundColor = .white
+        iv.contentMode = .scaleAspectFill
+        iv.clipsToBounds = true
         return iv
     }()
     

@@ -50,11 +50,14 @@ class ProductViewController: UICollectionViewController, UICollectionViewDelegat
     func addPhotoHandler(){
         print("Adding photo!")
         
-        let photoSelectorController = PhotoSelectorController(collectionViewLayout: UICollectionViewFlowLayout())
+        let layout =  UICollectionViewFlowLayout()
+        let photoSelectorController = PhotoSelectorController(collectionViewLayout: layout)
         
-        present(photoSelectorController, animated: true) { 
-            print("Presenting Photo Selector Controller!")
-        }
+        photoSelectorController.productViewController = self
+        
+        let navController = UINavigationController(rootViewController: photoSelectorController)
+        
+        present(navController, animated: true, completion: nil)
     }
     
     func setupStackView(){
