@@ -26,7 +26,7 @@ class ProductViewController: UICollectionViewController, UICollectionViewDelegat
         let numberOfCells = 3
         self.insertAssets(times: numberOfCells)
         
-        setupPageControl()
+        setupPageControl(currentPage: 0)
         setupStackView()
         
     }
@@ -42,10 +42,13 @@ class ProductViewController: UICollectionViewController, UICollectionViewDelegat
     
     let plusButton : UIButton = {
         let button = UIButton(type: .system)
-        button.setImage(#imageLiteral(resourceName: "plus").withRenderingMode(.alwaysOriginal), for: .normal)
+        button.setImage(#imageLiteral(resourceName: "circleplus"), for: .normal)
         button.addTarget(self, action: #selector(addPhotoHandler), for: .touchUpInside)
+        button.tintColor = .black
         return button
     }()
+    
+
     
     func addPhotoHandler(){
         print("Adding photo!")
@@ -55,9 +58,7 @@ class ProductViewController: UICollectionViewController, UICollectionViewDelegat
         
         photoSelectorController.productViewController = self
         
-        let navController = UINavigationController(rootViewController: photoSelectorController)
-        
-        present(navController, animated: true, completion: nil)
+        present(photoSelectorController, animated: true, completion: nil)
     }
     
     func setupStackView(){
@@ -76,7 +77,6 @@ class ProductViewController: UICollectionViewController, UICollectionViewDelegat
         collectionView?.backgroundColor = .white
         collectionView?.isPagingEnabled = true
         collectionView?.anchor(top: view.topAnchor, left: view.leftAnchor, botton: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: self.screenWidth)
-        
     }
     
     override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
@@ -84,8 +84,8 @@ class ProductViewController: UICollectionViewController, UICollectionViewDelegat
         pageControl.currentPage = Int(pageNumber)
     }
     
-    func setupPageControl(){
-        pageControl.currentPage = 0
+    func setupPageControl(currentPage: Int){
+        pageControl.currentPage = currentPage
         pageControl.numberOfPages = productPhotos.count
         pageControl.hidesForSinglePage = true
         view.addSubview(pageControl)

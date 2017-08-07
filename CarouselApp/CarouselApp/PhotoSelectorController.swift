@@ -9,7 +9,7 @@
 import UIKit
 import Photos
 
-class PhotoSelectorController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+class PhotoSelectorController: UICollectionViewController, UICollectionViewDelegateFlowLayout, HeaderPhotoSelectorCellDelegate {
     
     let headerId = "headerId"
     let cellId = "cellId"
@@ -29,8 +29,33 @@ class PhotoSelectorController: UICollectionViewController, UICollectionViewDeleg
         
         collectionView?.register(PhotoSelectorCell.self, forCellWithReuseIdentifier: cellId)
         
-        setupNavigationBar()
         fetchImages()
+    }
+    
+    func didTapAddButton() {
+        print("Adding some photo!")
+        
+        guard let productViewController = productViewController else {return}
+        
+        productViewController.productPhotos.append(selectedImage)
+        print("PRODUCT PHOTOS: ", productViewController.productPhotos, "PRODUCT PHOTOS - END!")
+        
+        self.dismiss(animated: true) { 
+            productViewController.setupPageControl(currentPage: productViewController.pageControl.currentPage)
+            productViewController.collectionView?.reloadData()
+        }
+
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("Item selected: ", indexPath)
+        self.selectedImage = images[indexPath.item]
+        self.collectionView?.reloadData()
+        
+        //scrolls up
+        let idx = IndexPath(item: 0, section: 0)
+        collectionView.scrollToItem(at: idx, at: .bottom, animated: true)
+        
     }
     
     fileprivate func assetsFetchOptions() -> PHFetchOptions {
@@ -82,31 +107,6 @@ class PhotoSelectorController: UICollectionViewController, UICollectionViewDeleg
         })
     }
     
-    func addHandler(){
-        print("Adding some photo!")
-        
-        guard let productViewController = productViewController else {return}
-        
-        productViewController.productPhotos.append(selectedImage)
-        print("PRODUCT PHOTOS: ", productViewController.productPhotos, "PRODUCT PHOTOS - END!")
-        
-        navigationController?.dismiss(animated: true, completion: {
-            productViewController.setupPageControl()
-            productViewController.collectionView?.reloadData()
-            
-        })
-        
-    }
-    
-    func setupNavigationBar(){
-        let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelHandler))
-        
-        let addButton = UIBarButtonItem(title: "Add", style: .done, target: self, action: #selector(addHandler))
-        
-        navigationItem.leftBarButtonItem = cancelButton
-        navigationItem.rightBarButtonItem = addButton
-    }
-    
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return images.count
     }
@@ -127,6 +127,8 @@ class PhotoSelectorController: UICollectionViewController, UICollectionViewDeleg
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: headerId, for: indexPath) as! HeaderPhotoSelectorCell
+        
+        header.delegate = self
         
         header.imageView.image = selectedImage
         
@@ -162,6 +164,8 @@ class PhotoSelectorController: UICollectionViewController, UICollectionViewDeleg
 //        cell.backgroundColor = UIColor.rgb(red: r, green: g, blue: b)
 
 //        cell.imageView.image = images[indexPath.item]
+        
+        
         cell.imageView.image = images[indexPath.item]
         print("INDEXPATH ", indexPath.item)
         
