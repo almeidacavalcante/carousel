@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ProductViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, UIPageViewControllerDelegate {
+class ProductViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, UIPageViewControllerDelegate, ProductCellDelegate {
 
 //    var productPhotos : [UIColor?] = [UIColor]()
     var productPhotos : [UIImage?] = [UIImage]()
@@ -17,11 +17,44 @@ class ProductViewController: UICollectionViewController, UICollectionViewDelegat
     
     let pageControl = UIPageControl()
     
+    let plusButton : UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(#imageLiteral(resourceName: "circleplus"), for: .normal)
+        button.addTarget(self, action: #selector(addPhotoHandler), for: .touchUpInside)
+        button.tintColor = .black
+        return button
+    }()
+    
+    lazy var editSwitcher : UISwitch = {
+        let switcher = UISwitch()
+        switcher.isOn = false
+        switcher.addTarget(self, action: #selector(handleSwitch), for: .valueChanged)
+        return switcher
+    }()
+    
+    let editLabel : UILabel = {
+        let label = UILabel()
+        label.text = "EDIT"
+        label.font = UIFont.boldSystemFont(ofSize: 12)
+        label.textColor = UIColor.rgb(red: 188, green: 188, blue: 188)
+        
+        return label
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.setupCollectionView()
         self.view.backgroundColor = .white
+        
+        view.addSubview(editLabel)
+        view.addSubview(editSwitcher)
+        
+        editLabel.anchor(top: self.collectionView?.bottomAnchor, left: nil, botton: nil, right: nil, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+        editLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        
+        editSwitcher.anchor(top: editLabel.bottomAnchor, left: nil, botton: nil, right: nil, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+        editSwitcher.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
 
         let numberOfCells = 3
         self.insertAssets(times: numberOfCells)
@@ -40,13 +73,16 @@ class ProductViewController: UICollectionViewController, UICollectionViewDelegat
 //        return sv
 //    }()
     
-    let plusButton : UIButton = {
-        let button = UIButton(type: .system)
-        button.setImage(#imageLiteral(resourceName: "circleplus"), for: .normal)
-        button.addTarget(self, action: #selector(addPhotoHandler), for: .touchUpInside)
-        button.tintColor = .black
-        return button
-    }()
+    
+    func handleSwitch(){
+        let value = self.editSwitcher.isOn
+        print("Switcher: ", value)
+        self.editSwitcher.setOn(!value, animated: true)
+        self.collectionView?.reloadData()
+        
+    }
+    
+    
     
     func addPhotoHandler(){
         print("Adding photo!")
@@ -57,6 +93,12 @@ class ProductViewController: UICollectionViewController, UICollectionViewDelegat
         photoSelectorController.productViewController = self
         
         present(photoSelectorController, animated: true, completion: nil)
+    }
+    
+    func didTapTrashButton(indexPath: IndexPath) {
+        self.productPhotos.remove(at: indexPath.item)
+        self.collectionView?.reloadData()
+        self.pageControl.numberOfPages = self.pageControl.numberOfPages-1
     }
     
     func setupStackView(){
@@ -119,7 +161,13 @@ class ProductViewController: UICollectionViewController, UICollectionViewDelegat
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! ProductCell
+        
+        cell.delegate = self
+        cell.indexPath = indexPath
+        cell.isEditAvailable = self.editSwitcher.isOn
+        cell.showTrashButton()
         cell.imageView.image = productPhotos[indexPath.item]
         
         return cell
