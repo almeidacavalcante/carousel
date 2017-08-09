@@ -47,6 +47,12 @@ class PhotoSelectorController: UICollectionViewController, UICollectionViewDeleg
 
     }
     
+    func didTapBackButton() {
+        self.dismiss(animated: true) {
+            print("Dismissing the Photo Selector!")
+        }
+    }
+    
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("Item selected: ", indexPath)
         self.selectedImage = images[indexPath.item]

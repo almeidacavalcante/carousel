@@ -10,6 +10,7 @@ import UIKit
 
 protocol HeaderPhotoSelectorCellDelegate {
     func didTapAddButton()
+    func didTapBackButton()
 }
 
 class HeaderPhotoSelectorCell : UICollectionViewCell {
@@ -22,6 +23,14 @@ class HeaderPhotoSelectorCell : UICollectionViewCell {
         iv.contentMode = .scaleAspectFill
         iv.clipsToBounds = true
         return iv
+    }()
+    
+    lazy var backButton : UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(#imageLiteral(resourceName: "arrow"), for: .normal)
+        button.tintColor = .white
+        button.addTarget(self, action: #selector(handleBackButton), for: .touchUpInside)
+        return button
     }()
     
     lazy var addButton : UIButton = {
@@ -38,9 +47,11 @@ class HeaderPhotoSelectorCell : UICollectionViewCell {
         
         addSubview(imageView)
         addSubview(addButton)
+        addSubview(backButton)
         
         imageView.anchor(top: topAnchor, left: leftAnchor, botton: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         addButton.anchor(top: topAnchor, left: nil, botton: nil, right: rightAnchor, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 8, width: 50, height: 50)
+        backButton.anchor(top: topAnchor, left: leftAnchor, botton: nil, right: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 50, height: 50)
         
         
     }
@@ -48,6 +59,11 @@ class HeaderPhotoSelectorCell : UICollectionViewCell {
     func handleAddButton(){
         print("HEADER CELL: handleAddButton()")
         delegate?.didTapAddButton()
+    }
+    
+    func handleBackButton(){
+        print("HEADER CELL: handleBackButton()")
+        delegate?.didTapBackButton()
     }
     
     required init?(coder aDecoder: NSCoder) {

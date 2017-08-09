@@ -48,8 +48,6 @@ class ProductViewController: UICollectionViewController, UICollectionViewDelegat
         return button
     }()
     
-
-    
     func addPhotoHandler(){
         print("Adding photo!")
         
@@ -92,13 +90,19 @@ class ProductViewController: UICollectionViewController, UICollectionViewDelegat
         pageControl.anchor(top: nil, left: collectionView?.leftAnchor, botton: collectionView?.bottomAnchor, right: collectionView?.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 50)
         
         pageControl.addTarget(self, action: #selector(pageChanged), for: .valueChanged)
-        
     }
+    
+    
     
     func pageChanged(){
         print(pageControl.currentPage)
+        let page = pageControl.currentPage
+        let indexPath = IndexPath(item: page, section: 0)
+        
+        self.collectionView?.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
         
     }
+    
     
     func insertAssets(times : Int){
         for i in 1...times {
