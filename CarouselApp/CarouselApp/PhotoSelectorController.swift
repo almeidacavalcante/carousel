@@ -37,8 +37,8 @@ class PhotoSelectorController: UICollectionViewController, UICollectionViewDeleg
         
         guard let productViewController = productViewController else {return}
         
-        productViewController.productPhotos.append(selectedImage)
-        print("PRODUCT PHOTOS: ", productViewController.productPhotos, "PRODUCT PHOTOS - END!")
+        productViewController.photos.append(selectedImage)
+        print("PRODUCT PHOTOS: ", productViewController.photos, "PRODUCT PHOTOS - END!")
         
         self.dismiss(animated: true) { 
             productViewController.setupPageControl(currentPage: productViewController.pageControl.currentPage)

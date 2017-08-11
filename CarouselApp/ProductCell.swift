@@ -14,6 +14,8 @@ protocol ProductCellDelegate {
 
 class ProductCell : UICollectionViewCell {
     
+    //TODO: Create a OBJECT CarouselItem with image, description, etc.
+    
     let imageView : UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFill
@@ -29,7 +31,15 @@ class ProductCell : UICollectionViewCell {
         return button
     }()
     
-    lazy var isEditAvailable = false
+    lazy var reorderButton : UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(#imageLiteral(resourceName: "stack"), for: .normal)
+        button.tintColor = .white
+        button.addTarget(self, action: #selector(reorderHandler), for: .touchUpInside)
+        return button
+    }()
+    
+    lazy var isCellEditingAvailable = false
     
     var indexPath : IndexPath?
     
@@ -42,23 +52,31 @@ class ProductCell : UICollectionViewCell {
         addSubview(imageView)
         
         self.imageView.anchor(top: topAnchor, left: leftAnchor, botton: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: screenWidth, height: 0)
-        self.showTrashButton()
+        
+        self.showEditingViews()
     }
     
-    func showTrashButton(){
-        print("isEditAvailable: ", self.isEditAvailable)
-        if self.isEditAvailable {
+    func showEditingViews(){
+        print("isEditAvailable: ", self.isCellEditingAvailable)
+        if self.isCellEditingAvailable {
             addSubview(trashButton)
-            self.trashButton.anchor(top: topAnchor, left: nil, botton: nil, right: rightAnchor, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 8, width: 50, height: 50)
+            addSubview(reorderButton)
+            trashButton.anchor(top: topAnchor, left: nil, botton: nil, right: rightAnchor, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 8, width: 50, height: 50)
+            reorderButton.anchor(top: topAnchor, left: leftAnchor, botton: nil, right: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 50, height: 50)
+            
         }else{
             print("EDIT NOT AVAILABLE!")
             trashButton.removeFromSuperview()
+            reorderButton.removeFromSuperview()
         }
     }
     override func prepareForReuse() {
         imageView.image = nil
-//        showTrashButton()
         print("Preparing for reuse...")
+    }
+    
+    func reorderHandler(){
+        print("reorderHandler")
     }
     
     func deleteHandler(){

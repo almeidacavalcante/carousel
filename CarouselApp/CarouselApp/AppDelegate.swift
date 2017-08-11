@@ -24,9 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         layout.scrollDirection = .horizontal
         
         window?.rootViewController = ProductViewController(collectionViewLayout: layout)
-        
-        
-        
+
         return true 
     }
 
