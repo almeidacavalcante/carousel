@@ -33,6 +33,14 @@ class ProductViewController: UICollectionViewController, UICollectionViewDelegat
         button.tintColor = .black
         return button
     }()
+    
+    lazy var reorderButton : UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(#imageLiteral(resourceName: "stack"), for: .normal)
+        button.tintColor = .black
+        button.addTarget(self, action: #selector(handleReorder), for: .touchUpInside)
+        return button
+    }()
 
     lazy var editButton : UIButton = {
         let button = UIButton(type: .system)
@@ -101,11 +109,13 @@ class ProductViewController: UICollectionViewController, UICollectionViewDelegat
         containerView.addSubview(editButton)
         containerView.addSubview(addButton)
         containerView.addSubview(finishEditModeButton)
+        containerView.addSubview(reorderButton)
         
         containerView.anchor(top: nil, left: nil, botton: self.view.bottomAnchor, right: self.view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 8, paddingRight: 8, width: screenWidth/2+16, height: 50)
         editButton.anchor(top: containerView.topAnchor, left: nil, botton: nil, right: containerView.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 50, height: 50)
         addButton.anchor(top: containerView.topAnchor, left: containerView.leftAnchor, botton: nil, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 50, height: 50)
         finishEditModeButton.anchor(top: containerView.topAnchor, left: nil, botton: nil, right: containerView.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 50, height: 50)
+        reorderButton.anchor(top: containerView.topAnchor, left: nil, botton: nil, right: finishEditModeButton.leftAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 12, width: 50, height: 50)
     }
     
     func handleEdit(){
@@ -115,6 +125,18 @@ class ProductViewController: UICollectionViewController, UICollectionViewDelegat
         editButton.isHidden = true
         finishEditModeButton.isHidden = false
         addButton.isHidden = false
+    }
+    
+    func handleReorder(){
+        print("reorderHandler")
+        
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+        
+        let reorderViewController = ReorderViewController(collectionViewLayout: layout)
+        reorderViewController.photos = self.photos
+        
+        present(reorderViewController, animated: true, completion: nil)
     }
     
     func handleFinishEditMode(){

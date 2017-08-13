@@ -12,6 +12,9 @@
 		D51AF48B1F22AAF0008CA66E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D51AF48A1F22AAF0008CA66E /* Assets.xcassets */; };
 		D51AF4981F23B9D9008CA66E /* Extentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51AF4971F23B9D9008CA66E /* Extentions.swift */; };
 		D572192F1F2820FD00E43B5C /* ProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D572192E1F2820FD00E43B5C /* ProductCell.swift */; };
+		D58D16181F3FD352000D6B32 /* ReorderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58D16171F3FD352000D6B32 /* ReorderCell.swift */; };
+		D58D161B1F3FDAFC000D6B32 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58D161A1F3FDAFC000D6B32 /* Extensions.swift */; };
+		D5C08D001F3E5C9600EC9F13 /* ReorderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C08CFF1F3E5C9600EC9F13 /* ReorderViewController.swift */; };
 		D5D2EFD21F328AB4002BB16F /* PhotoSelectorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D2EFD11F328AB4002BB16F /* PhotoSelectorController.swift */; };
 		D5D2EFD41F328C51002BB16F /* HeaderPhotoSelectorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D2EFD31F328C51002BB16F /* HeaderPhotoSelectorCell.swift */; };
 		D5D2EFD61F32934B002BB16F /* PhotoSelectorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D2EFD51F32934B002BB16F /* PhotoSelectorCell.swift */; };
@@ -25,6 +28,9 @@
 		D51AF48F1F22AAF0008CA66E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D51AF4971F23B9D9008CA66E /* Extentions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extentions.swift; sourceTree = "<group>"; };
 		D572192E1F2820FD00E43B5C /* ProductCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProductCell.swift; path = ../ProductCell.swift; sourceTree = "<group>"; };
+		D58D16171F3FD352000D6B32 /* ReorderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReorderCell.swift; sourceTree = "<group>"; };
+		D58D161A1F3FDAFC000D6B32 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		D5C08CFF1F3E5C9600EC9F13 /* ReorderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReorderViewController.swift; sourceTree = "<group>"; };
 		D5D2EFD11F328AB4002BB16F /* PhotoSelectorController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoSelectorController.swift; sourceTree = "<group>"; };
 		D5D2EFD31F328C51002BB16F /* HeaderPhotoSelectorCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderPhotoSelectorCell.swift; sourceTree = "<group>"; };
 		D5D2EFD51F32934B002BB16F /* PhotoSelectorCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoSelectorCell.swift; sourceTree = "<group>"; };
@@ -60,6 +66,8 @@
 		D51AF4821F22AAF0008CA66E /* CarouselApp */ = {
 			isa = PBXGroup;
 			children = (
+				D58D16191F3FDAEF000D6B32 /* Extensions */,
+				D5C08CFE1F3E5C6400EC9F13 /* PhotoReorder */,
 				D5D2EFD01F328A4A002BB16F /* PhotoSelector */,
 				D572192E1F2820FD00E43B5C /* ProductCell.swift */,
 				D51AF4831F22AAF0008CA66E /* AppDelegate.swift */,
@@ -69,6 +77,23 @@
 				D51AF4971F23B9D9008CA66E /* Extentions.swift */,
 			);
 			path = CarouselApp;
+			sourceTree = "<group>";
+		};
+		D58D16191F3FDAEF000D6B32 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				D58D161A1F3FDAFC000D6B32 /* Extensions.swift */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
+		D5C08CFE1F3E5C6400EC9F13 /* PhotoReorder */ = {
+			isa = PBXGroup;
+			children = (
+				D5C08CFF1F3E5C9600EC9F13 /* ReorderViewController.swift */,
+				D58D16171F3FD352000D6B32 /* ReorderCell.swift */,
+			);
+			name = PhotoReorder;
 			sourceTree = "<group>";
 		};
 		D5D2EFD01F328A4A002BB16F /* PhotoSelector */ = {
@@ -152,11 +177,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D5C08D001F3E5C9600EC9F13 /* ReorderViewController.swift in Sources */,
 				D51AF4981F23B9D9008CA66E /* Extentions.swift in Sources */,
 				D572192F1F2820FD00E43B5C /* ProductCell.swift in Sources */,
 				D5D2EFD41F328C51002BB16F /* HeaderPhotoSelectorCell.swift in Sources */,
 				D5D2EFD61F32934B002BB16F /* PhotoSelectorCell.swift in Sources */,
+				D58D161B1F3FDAFC000D6B32 /* Extensions.swift in Sources */,
 				D51AF4861F22AAF0008CA66E /* ProductViewController.swift in Sources */,
+				D58D16181F3FD352000D6B32 /* ReorderCell.swift in Sources */,
 				D51AF4841F22AAF0008CA66E /* AppDelegate.swift in Sources */,
 				D5D2EFD21F328AB4002BB16F /* PhotoSelectorController.swift in Sources */,
 			);

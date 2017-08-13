@@ -15,7 +15,7 @@ protocol ProductCellDelegate {
 class ProductCell : UICollectionViewCell {
     
     //TODO: Create a OBJECT CarouselItem with image, description, etc.
-    
+
     let imageView : UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFill
@@ -77,6 +77,7 @@ class ProductCell : UICollectionViewCell {
     
     func reorderHandler(){
         print("reorderHandler")
+        
     }
     
     func deleteHandler(){
