@@ -14,10 +14,24 @@ class ReorderViewController: UICollectionViewController, UICollectionViewDelegat
     var photos : [UIImage?] = [UIImage]()
     
     fileprivate var longPressGesture : UILongPressGestureRecognizer!
+    var productViewController : ProductViewController?
+    
+    let saveButton : UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(#imageLiteral(resourceName: "check"), for: .normal)
+        button.addTarget(self, action: #selector(handleSave), for: .touchUpInside)
+        return button
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCollectionView()
+        setupSaveButton()
+    }
+    
+    func setupSaveButton(){
+        view.addSubview(saveButton)
+        saveButton.anchor(top: nil, left: nil, botton: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 8, paddingRight: 8, width: 50, height: 50)
     }
     
     func setupCollectionView(){
@@ -48,6 +62,14 @@ class ReorderViewController: UICollectionViewController, UICollectionViewDelegat
         print("LONGPRESS????")
     }
     
+    func handleSave(){
+        productViewController?.photos = self.photos
+        productViewController?.pageControl.reloadInputViews()
+        productViewController?.collectionView?.reloadData()
+        self.dismiss(animated: true) { 
+            print("Dismissing the Reordering page!")
+        }
+    }
     
 
     func handleLongGesture(_ gesture : UILongPressGestureRecognizer){
@@ -122,12 +144,16 @@ extension ReorderViewController {
         return 1
     }
     
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 1
     }
 
     
     override func collectionView(_ collectionView: UICollectionView, moveItemAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        
+        let tempPhoto = photos.remove(at: sourceIndexPath.item)
+        photos.insert(tempPhoto, at: destinationIndexPath.item)
     }
 }
 

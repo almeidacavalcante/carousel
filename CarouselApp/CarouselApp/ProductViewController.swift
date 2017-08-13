@@ -134,6 +134,7 @@ class ProductViewController: UICollectionViewController, UICollectionViewDelegat
         layout.scrollDirection = .vertical
         
         let reorderViewController = ReorderViewController(collectionViewLayout: layout)
+        reorderViewController.productViewController = self
         reorderViewController.photos = self.photos
         
         present(reorderViewController, animated: true, completion: nil)
