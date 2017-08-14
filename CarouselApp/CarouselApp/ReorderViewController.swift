@@ -63,11 +63,13 @@ class ReorderViewController: UICollectionViewController, UICollectionViewDelegat
     }
     
     func handleSave(){
-        productViewController?.photos = self.photos
-        productViewController?.pageControl.reloadInputViews()
-        productViewController?.collectionView?.reloadData()
+        guard let productViewController = productViewController else {return}
+        productViewController.photos = self.photos
+        productViewController.collectionView?.reloadData()
         self.dismiss(animated: true) { 
             print("Dismissing the Reordering page!")
+            productViewController.pageControl.currentPage = 0
+            productViewController.pageChanged()
         }
     }
     

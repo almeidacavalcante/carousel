@@ -31,14 +31,6 @@ class ProductCell : UICollectionViewCell {
         return button
     }()
     
-    lazy var reorderButton : UIButton = {
-        let button = UIButton(type: .system)
-        button.setImage(#imageLiteral(resourceName: "stack"), for: .normal)
-        button.tintColor = .white
-        button.addTarget(self, action: #selector(reorderHandler), for: .touchUpInside)
-        return button
-    }()
-    
     lazy var isCellEditingAvailable = false
     
     var indexPath : IndexPath?
@@ -60,14 +52,12 @@ class ProductCell : UICollectionViewCell {
         print("isEditAvailable: ", self.isCellEditingAvailable)
         if self.isCellEditingAvailable {
             addSubview(trashButton)
-            addSubview(reorderButton)
+
             trashButton.anchor(top: topAnchor, left: nil, botton: nil, right: rightAnchor, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 8, width: 50, height: 50)
-            reorderButton.anchor(top: topAnchor, left: leftAnchor, botton: nil, right: nil, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 50, height: 50)
-            
+
         }else{
             print("EDIT NOT AVAILABLE!")
             trashButton.removeFromSuperview()
-            reorderButton.removeFromSuperview()
         }
     }
     override func prepareForReuse() {
@@ -75,10 +65,6 @@ class ProductCell : UICollectionViewCell {
         print("Preparing for reuse...")
     }
     
-    func reorderHandler(){
-        print("reorderHandler")
-        
-    }
     
     func deleteHandler(){
         print("deleteHandler")

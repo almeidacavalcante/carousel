@@ -42,7 +42,10 @@ class PhotoSelectorController: UICollectionViewController, UICollectionViewDeleg
         
         self.dismiss(animated: true) { 
             productViewController.setupPageControl(currentPage: productViewController.pageControl.currentPage)
+
             productViewController.collectionView?.reloadData()
+            productViewController.pageControl.currentPage = productViewController.pageControl.numberOfPages-1
+            productViewController.pageChanged()
         }
 
     }

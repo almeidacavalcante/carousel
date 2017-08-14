@@ -94,6 +94,7 @@ class ProductViewController: UICollectionViewController, UICollectionViewDelegat
         setupContainerView()
         finishEditModeButton.isHidden = true
         addButton.isHidden = true
+        reorderButton.isHidden = true
     }
     
     func setupCaptionField(){
@@ -124,6 +125,7 @@ class ProductViewController: UICollectionViewController, UICollectionViewDelegat
         collectionView?.reloadData()
         editButton.isHidden = true
         finishEditModeButton.isHidden = false
+        reorderButton.isHidden = false
         addButton.isHidden = false
     }
     
@@ -146,6 +148,7 @@ class ProductViewController: UICollectionViewController, UICollectionViewDelegat
         finishEditModeButton.isHidden = true
         editButton.isHidden = false
         addButton.isHidden = true
+        reorderButton.isHidden = true
     }
     
     func orderingHandler(){
